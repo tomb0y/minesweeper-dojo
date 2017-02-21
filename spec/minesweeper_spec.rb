@@ -98,4 +98,23 @@ RSpec.describe MinesweeperFieldGenerator do
       end
     end
   end
+
+  context '3x5 field' do
+    context 'with diagonal bombs' do
+      let(:input) do
+        <<~INPUT
+          3 5
+          **...
+          .....
+          .*...
+        INPUT
+      end
+
+      it 'generates the correct field' do
+        expect(subject.field).to eq([['*', '*', '1', '0', '0'],
+                                     ['3', '3', '2', '0', '0'],
+                                     ['1', '*', '1', '0', '0']])
+      end
+    end
+  end
 end

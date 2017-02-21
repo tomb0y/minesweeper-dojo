@@ -30,11 +30,16 @@ class MinesweeperFieldGenerator
   private
 
   def increase_bomb_num_for_neighbors(i, j)
+    increase_bomb_num_for_upper_left_neighbor(i, j)
     increase_bomb_num_for_upper_center_neighbor(i, j)
-    increase_bomb_num_for_lower_center_neighbor(i, j)
+    increase_bomb_num_for_upper_right_neighbor(i, j)
+
     increase_bomb_num_for_right_neighbor(i, j)
     increase_bomb_num_for_left_neighbor(i, j)
+
     increase_bomb_num_for_lower_right_neighbor(i, j)
+    increase_bomb_num_for_lower_center_neighbor(i, j)
+    increase_bomb_num_for_lower_left_neighbor(i, j)
   end
 
   def increase_bomb_num_for_neighbor(i, j, di, dj)
@@ -49,20 +54,32 @@ class MinesweeperFieldGenerator
     @field[x][y] += 1
   end
 
+  def increase_bomb_num_for_upper_left_neighbor(i, j)
+    increase_bomb_num_for_neighbor(i, j, -1, -1)
+  end
+
   def increase_bomb_num_for_upper_center_neighbor(i, j)
     increase_bomb_num_for_neighbor(i, j, -1, 0)
   end
 
-  def increase_bomb_num_for_lower_center_neighbor(i, j)
-    increase_bomb_num_for_neighbor(i, j, 1, 0)
+  def increase_bomb_num_for_upper_right_neighbor(i, j)
+    increase_bomb_num_for_neighbor(i, j, -1, 1)
+  end
+
+  def increase_bomb_num_for_left_neighbor(i, j)
+    increase_bomb_num_for_neighbor(i, j, 0, -1)
   end
 
   def increase_bomb_num_for_right_neighbor(i, j)
     increase_bomb_num_for_neighbor(i, j, 0, 1)
   end
 
-  def increase_bomb_num_for_left_neighbor(i, j)
-    increase_bomb_num_for_neighbor(i, j, 0, -1)
+  def increase_bomb_num_for_lower_left_neighbor(i, j)
+    increase_bomb_num_for_neighbor(i, j, 1, -1)
+  end
+
+  def increase_bomb_num_for_lower_center_neighbor(i, j)
+    increase_bomb_num_for_neighbor(i, j, 1, 0)
   end
 
   def increase_bomb_num_for_lower_right_neighbor(i, j)
