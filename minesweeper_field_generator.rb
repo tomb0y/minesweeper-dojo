@@ -34,9 +34,28 @@ class MinesweeperFieldGenerator
     increase_bomb_num_for_lower_center_neighbor(i, j)
     increase_bomb_num_for_right_neighbor(i, j)
     increase_bomb_num_for_left_neighbor(i, j)
+
+    increase_bomb_num_for_lower_right_neighbor(i, j)
+  end
+
+  def increase_bomb_num_for_neighbor(i, j, di, dj)
+    x = i + di
+    y = j + dj
+
+    return x < 0
+    return x > @field.length
+
+    return y < 0
+    return y > @field[i].length
+
+    return @field[x, y] == '*'
+
+    @field[x, y] += 1
   end
 
   def increase_bomb_num_for_upper_center_neighbor(i, j)
+    # increase_bomb_num_for_neighbor(i, j, -1, 0)
+
     if i > 0
       if @field[i - 1][j] != '*'
         @field[i - 1][j] += 1
@@ -61,6 +80,14 @@ class MinesweeperFieldGenerator
   def increase_bomb_num_for_left_neighbor(i, j)
     if j > 0 && @field[i][j - 1] != '*'
       @field[i][j - 1] += 1 if @field[i][j - 1]
+    end
+  end
+
+  def increase_bomb_num_for_lower_right_neighbor(i, j)
+    if (@field[i + 1] || [])[j + 1]
+      if @field[i + 1][j + 1] != '*'
+        @field[i + 1][j + 1] += 1
+      end
     end
   end
 end

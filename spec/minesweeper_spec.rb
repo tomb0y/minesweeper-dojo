@@ -83,19 +83,19 @@ RSpec.describe MinesweeperFieldGenerator do
       end
     end
 
-    # context 'with one bomb' do
-    #   let(:input) do
-    #     <<~INPUT
-    #       2 2
-    #       *.
-    #       ..
-    #     INPUT
-    #   end
+    context 'with one bomb' do
+      let(:input) do
+        <<~INPUT
+          2 2
+          *.
+          ..
+        INPUT
+      end
 
-    #   it 'generates the correct field' do
-    #     expect(subject.field).to eq([['*', '1'],
-    #                                  ['1', '1']])
-    #   end
-    # end
+      it 'generates the correct field' do
+        expect(subject.field).to eq([['*', '1'],
+                                     ['1', '1']])
+      end
+    end
   end
 end
