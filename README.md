@@ -1,77 +1,98 @@
-## The task
-Given a name and a sender, generate an ascii postcard like this:
+[Source](http://codingdojo.org/kata/Minesweeper/)
 
-```
-+------------------------+
-|                        |
-|   We miss you, name!   |
-|   Get well soon!       |
-|                        |
-|   -- sender            |
-|                        |
-+------------------------+
-```
+Difficulty: Easy
 
-The left/right padding around the text should be 3 spaces (think about the edge case when the sender is loooong).
-The padding above/below should be one line.
-The sender should be prefixed with `-- `.
+**Problem Description**
 
-### concrete example
+Have you ever played Minesweeper? It's a cute little game which comes
+within a certain Operating System whose name we can't really remember.
+Well, the goal of the game is to find all the mines within an MxN field.
+To help you, the game shows a number in a square which tells you how
+many mines there are adjacent to that square. For instance, take the
+following 4x4 field with 2 mines (which are represented by an \*
+character):
 
-given:
+    *...
+    ....
+    .*..
+    ....
 
-* `name` = `Gábor Szabó`
-* `sender` = `emarsys`
+The same field including the hint numbers described above would look
+like this:
 
-output:
-```
-+-------------------------------+
-|                               |
-|   We miss you, Gábor Szabó!   |
-|   Get well soon!              |
-|                               |
-|   -- emarsys                  |
-|                               |
-+-------------------------------+
-```
+    *100
+    2210
+    1*10
+    1110
 
-![plain postcard](https://gist.githubusercontent.com/tomb0y/78cd0581cab5013283cc11b659b08591/raw/a10b1718246934a64ccfd759dcb06328142e6105/plain.png)
+You should write a program that takes input as follows:
 
-## Bonus exercise
+The input will consist of an arbitrary number of fields. The first line
+of each field contains two integers n and m (0 &lt; n,m &lt;= 100) which
+stands for the number of lines and columns of the field respectively.
+The next n lines contains exactly m characters and represent the field.
+Each safe square is represented by an "." character (without the quotes)
+and each mine square is represented by an "\*" character (also without
+the quotes). The first field line where n = m = 0 represents the end of
+input and should not be processed.
 
-Accept two additional parameters called `text_color` and `background_color` and which accepts the following values:
+Your program should produce output as follows:
 
-* black
-* red
-* green
-* yellow
-* blue
-* magenta
-* cyan
-* white
+For each field, you must print the following message in a line alone:
 
-and output an accordingly colored postcard.
+Field \#x:
 
-### concrete example
+Where x stands for the number of the field (starting from 1). The next n
+lines should contain the field with the "." characters replaced by the
+number of adjacent mines to that square. There must be an empty line
+between field outputs.
 
-* `name` = `Gábor Szabó`
-* `sender` = `emarsys`
-* `text_color` = `red`
-* `background_color` = `yellow`
+**Clues**
 
-output:
+As you may have already noticed, each square may have at most 8 adjacent
+squares.
 
-![colored postcard](https://gist.githubusercontent.com/tomb0y/78cd0581cab5013283cc11b659b08591/raw/a10b1718246934a64ccfd759dcb06328142e6105/color.png)
+**Suggested Test Cases**
 
-## setup/instructions (osx specific)
+This is the acceptance test input:
 
-1. `brew install terminal-notifier`
-2. `bundle install`
-3. run `./bin/guard` (doesn't work from tmux :/)
-4. start working
-  * the tests will run every time you save a `.rb` file
-  * you'll get osx notifications about the results
-  * you can check the test output in guard
-5. when all your tests are green, remove the next `skip: true` in `spec/postcard_spec.rb`
-6. when there are no more skipped tests and everything is green, start `REFACTOR`ing in the `SMALL`est steps you can think of
-7. profit!
+    4 4
+    *...
+    ....
+    .*..
+    ....
+    3 5
+    **...
+    .....
+    .*...
+    0 0
+
+and output:
+
+    Field #1:
+    *100
+    2210
+    1*10
+    1110
+
+    Field #2:
+    **100
+    33200
+    1*100
+
+------------------------------------------------------------------------
+
+**Comments from those who are working on this Kata**
+
+This Kata was tackled at the [SaoPauloDojo](/dojo/SaoPauloDojo) and
+results described [here](/record/2007Aug29SPDojo) .
+
+The Kata was done by [YouDevise](/dojo/YouDevise) and results described
+at tinyurl.com/6falq7
+
+The Kata was done by Songkick.com and the test framework and solution
+posted at
+github.com/mattwynne/software-craftsmanship-katas/tree/master/minesweeper
+
+Macluq has posted his solution on Github :
+<https://github.com/macluq/KataMinesweeper>
